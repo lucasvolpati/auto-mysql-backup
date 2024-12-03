@@ -1,0 +1,1 @@
+# This project is a simple backup automation for MySQL databases
