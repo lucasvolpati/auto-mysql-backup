@@ -1,0 +1,27 @@
+services:
+  php:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+    ports:
+        - 8000:80
+  mariadb:
+    image: mariadb:10.3.10
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345
+      - MYSQL_DATABASE=test
+      - TZ=America/Sao_Paulo
+    volumes:
+      - ./docker/dbdata:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345
+      - PMA_HOSTS=mariadb
+      - UPLOAD_LIMIT=1G
+    ports:
+      - 7000:80

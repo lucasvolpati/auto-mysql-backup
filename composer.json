@@ -4,12 +4,17 @@
     "type": "project",
     "require": {
         "react/child-process": "v0.6.5",
-        "dragonmantank/cron-expression": "v3.4.0"
+        "dragonmantank/cron-expression": "v3.4.0",
+        "vlucas/phpdotenv": "v5.6.1",
+        "monolog/monolog": "3.8.1"
     },
     "autoload": {
         "psr-4": {
             "AutoMysqlBackup\\": "src/"
-        }
+        },
+        "files": [
+            "src/Base/Helpers.php"
+        ]
     },
     "authors": [
         {
