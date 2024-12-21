@@ -1,6 +1,6 @@
 {
-    "name": "lucasvolpati/auto-mysql-backup",
-    "description": "This project is a simple backup automation for MySQL databases",
+    "name": "lucasvolpati/chrono-db",
+    "description": "This project is a simple backup automation for databases",
     "type": "project",
     "require": {
         "react/child-process": "v0.6.5",
@@ -10,7 +10,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AutoMysqlBackup\\": "src/"
+            "ChronoDB\\": "src/"
         },
         "files": [
             "src/Base/Helpers.php"

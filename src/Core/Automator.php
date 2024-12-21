@@ -1,10 +1,10 @@
 <?php
 
-namespace AutoMysqlBackup\Core;
+namespace ChronoDB\Core;
 
-use AutoMysqlBackup\Core\Connect;
+use ChronoDB\Core\Connect;
 use React\ChildProcess\Process;
-use AutoMysqlBackup\Base\Log;
+use ChronoDB\Base\Log;
 
 class Automator {
 

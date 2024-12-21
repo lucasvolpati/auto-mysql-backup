@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 
 require __DIR__ . '/vendor/autoload.php';
 
-use AutoMysqlBackup\Core\Automator;
+use ChronoDB\Core\Automator;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();

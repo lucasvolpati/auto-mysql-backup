@@ -1,6 +1,6 @@
 <?php
 
-namespace AutoMysqlBackup\Core;
+namespace ChronoDB\Core;
 
 use \PDO;
 use \PDOException;

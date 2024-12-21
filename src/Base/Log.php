@@ -1,6 +1,6 @@
 <?php
 
-namespace AutoMysqlBackup\Base;
+namespace ChronoDB\Base;
 
 use Monolog\Level;
 use Monolog\Logger;
