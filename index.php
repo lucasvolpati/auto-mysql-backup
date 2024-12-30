@@ -6,16 +6,10 @@ error_reporting(E_ALL);
 
 require __DIR__ . '/vendor/autoload.php';
 
-use ChronoDB\Base\Strategy\MysqlAutomator;
+use ChronoDB\Base\Strategy\MysqlBackup;
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+Dotenv\Dotenv::createImmutable(__DIR__)->load();
 
-// $auto = new Automator(env('DB_HOST'), env('DB_USER'), env('DB_PASS'), env('ZIP_PASS'));
+$test = new MysqlBackup();
 
-// $auto->makeBackups();
-
-
-$test = new MysqlAutomator();
-
-$test->createZipFile(__DIR__ . '/storage/mysql-mariadb/test');
+$test->createZipFile('test');

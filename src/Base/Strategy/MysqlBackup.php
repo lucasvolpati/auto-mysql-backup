@@ -9,7 +9,7 @@ use ChronoDB\Base\Log;
 use \DateTime;
 use \ZipArchive;
 
-class MysqlAutomator implements BackupAutomator
+class MysqlBackup implements BackupAutomator
 {
     public array $ignoreDatabases = [
         'mysql', 
@@ -25,22 +25,18 @@ class MysqlAutomator implements BackupAutomator
     }
 
     /**
-     * @param string $filePath | $this->backupDir/$currentFolderName/$fileName
+     * @param string $filePath
+     * @return bool
      */
-    public function createZipFile(string $filePath): bool
-    {
-        // ini_set('upload_tmp_dir', $this->backupDir . '/tmp');
-        // ini_set('sys_temp_dir', $this->backupDir . '/tmp');
-        Log::info('Diretório temporário usado pelo PHP:', ['tmp_dir' => sys_get_temp_dir()]);
-
+    public function createZipFile(string $fileName): bool
+    {       
         $currentFolderName = (new DateTime('now'))->format('Y-m-d');
 
-        // $command = "zip -jP $zipPass $this->backupDir/$fileName.zip {$dataBaseItem['backupFile']}";
+        $dir = $this->getOrCreatePath("$this->backupDir/$currentFolderName");
+
+        $filePath = "$dir/$fileName";
 
         $zip = new ZipArchive();
-
-        // $file = "$this->backupDir/$currentFolderName/$fileName";
-        
 
         if (!$zip->open($filePath . '.zip', ZipArchive::CREATE)) {
             Log::error("Não foi possível criar arquivo zip final!", [$filePath . '.zip']);
@@ -57,10 +53,26 @@ class MysqlAutomator implements BackupAutomator
         $zip->setEncryptionName(basename($filePath . '.zip'), ZipArchive::EM_AES_256);
         $zip->close();
         
-        Log::error("Arquivo zip final foi criado com sucesso!", [$filePath . '.zip']);
+        Log::info("Arquivo zip final foi criado com sucesso!", [$filePath . '.zip']);
         return true;
     }
 
+    /**
+     * @param string $path
+     * @return string
+     */
+    private function getOrCreatePath(string $path): string
+    {
+        if(!file_exists($path)) {
+            mkdir($path);
+        }
+
+        return $path;
+    }
+
+    /**
+     * @return void
+     */
     public function setIgnoreDatabases(array $databases): void
     {
         $this->ignoreDatabases[] = $databases;

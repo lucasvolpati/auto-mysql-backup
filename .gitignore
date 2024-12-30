@@ -5,4 +5,5 @@ docker/mariadb/
 backups/*
 logs/*
 
-storage/*/*.zip
+/storage/mysql-mariadb/*
+/storage/*/*.zip
