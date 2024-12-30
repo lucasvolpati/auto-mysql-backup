@@ -1,6 +1,8 @@
 /vendor/
 .env
-docker/dbdata/
+docker/dbdata/*
 docker/mariadb/
 backups/*
 logs/*
+
+storage/*/*.zip

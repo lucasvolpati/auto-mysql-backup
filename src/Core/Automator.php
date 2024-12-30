@@ -55,11 +55,19 @@ class Automator {
         $group = [];
         foreach ($dbList as $base) {
             $backupFile = "$this->backupDir/" . $base . '.sql';
-            $dbUser = env('DB_USER');
-            $dbPass = env('DB_PASS');
-            $dbHost = env('DB_HOST');
+            $dbUser = env('MYSQL_USER');
+            $dbPass = env('MYSQL_PASS');
+            $dbHost = env('MYSQL_HOST');
 
-            $command = "mysqldump -h $dbHost -u $dbUser -p'$dbPass' --single-transaction --skip-triggers $base > $backupFile";
+            $command = sprintf(
+                "mysqldump -h %s -u %s -p'%s' --single-transaction --skip-triggers %s > %s",
+                escapeshellarg($dbHost),
+                escapeshellarg($dbUser),
+                escapeshellarg($dbPass),
+                escapeshellarg($base),
+                escapeshellarg($backupFile),
+            );
+
             $group[$base] = ["command" => $command, "backupFile" => $backupFile];
         }
 

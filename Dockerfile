@@ -27,6 +27,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     php8.4-pdo \
     supervisor
 
+RUN chmod 1777 /tmp
+
+RUN chown www-data:www-data /tmp
+
 EXPOSE 80
 
 CMD ["apachectl", "-D", "FOREGROUND"]

@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/var/www/html
+      - ./docker/php.ini:/etc/php/8.4/apache2/php.ini
     ports:
         - 8000:80
   mariadb:
